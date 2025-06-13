@@ -1,0 +1,67 @@
+﻿podpunkt 1
+GET http://localhost:5257/api/nurseries/{id}/batches
+np
+GET http://localhost:5257/api/nurseries/1/batches
+deje wynik Json w oczekiwanym formacie
+
+propunkt 2
+POST  http://localhost:5257/api/batches
+z danymi
+{
+"quantity": 700,
+"species": "Quercus robur",
+"nursery": "Green Forest Nursery",
+"responsible": [
+{
+"employeeId": 1,
+"role": "Supervisor"
+},
+{
+"employeeId": 3,
+"role": "Planter"
+}
+]
+}
+
+sprawdzanie bledow
+
+dne dla nie istenijacego gatunku
+{
+  "quantity": 100,
+  "species": "FAKE-SPECIES",
+  "nursery": "Green Forest Nursery",
+  "responsible": [
+    { "employeeId": 1, "role": "Supervisor" }
+  ]
+}
+
+dane dla nieistniejacej szkolki lesnej
+{
+  "quantity": 100,
+  "species": "Quercus robur",
+  "nursery": "Nonexistent Nursery",
+  "responsible": [
+    { "employeeId": 1, "role": "Supervisor" }
+  ]
+}
+
+dane dla nieistniejacego pracownika
+{
+  "quantity": 100,
+  "species": "Quercus robur",
+  "nursery": "Green Forest Nursery",
+  "responsible": [
+    { "employeeId": 999, "role": "Supervisor" }
+  ]
+}
+
+blad walidacji
+{
+  "species": "Quercus robur",
+  "nursery": "Green Forest Nursery",
+  "responsible": [
+    { "employeeId": 1 }
+  ]
+}
+
+
